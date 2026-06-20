@@ -3,7 +3,7 @@
     <form @submit.prevent="add" class="flex gap-2 mb-6">
       <input v-model="newName" :placeholder="$t('class.name')" class="form-input flex-1" required />
       <button type="submit" class="btn-primary flex items-center gap-1 shrink-0" :disabled="saving">
-        <span class="material-icons text-base">add</span>{{ $t('common.add') }}
+        <span class="material-icons-round text-base">add</span>{{ $t('common.add') }}
       </button>
     </form>
     <p v-if="error" class="text-sm mb-3" style="color:var(--color-danger)">{{ error }}</p>
@@ -31,18 +31,18 @@
               <div class="flex items-center justify-center gap-1">
                 <template v-if="editingId === item.id">
                   <button @click="saveEdit(item.id)" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                    <span class="material-icons text-base" style="color:var(--color-primary)">check</span>
+                    <span class="material-icons-round text-base" style="color:var(--color-primary)">check</span>
                   </button>
                   <button @click="cancelEdit" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                    <span class="material-icons text-base" style="color:var(--color-text-muted)">close</span>
+                    <span class="material-icons-round text-base" style="color:var(--color-text-muted)">close</span>
                   </button>
                 </template>
                 <template v-else>
                   <button @click="startEdit(item)" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                    <span class="material-icons text-base" style="color:var(--color-text-muted)">edit</span>
+                    <span class="material-icons-round text-base" style="color:var(--color-text-muted)">edit</span>
                   </button>
                   <button @click="remove(item.id)" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                    <span class="material-icons text-base" style="color:var(--color-danger)">delete</span>
+                    <span class="material-icons-round text-base" style="color:var(--color-danger)">delete</span>
                   </button>
                 </template>
               </div>

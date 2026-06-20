@@ -1,6 +1,6 @@
 {
   "app": { "name": "Bewertungssystem" },
-  "auth": { "email": "E-Mail", "password": "Passwort", "login": "Anmelden", "logout": "Abmelden" },
+  "auth": { "email": "E-Mail", "password": "Passwort", "login": "Anmelden", "logout": "Abmelden", "welcome": "Willkommen zurück", "loginPrompt": "Bitte melden Sie sich an, um fortzufahren.", "tagline": "Schülerentwicklung Schritt für Schritt verfolgen.", "subtitle": "Zielbasierte Bewertungen für jeden Schüler." },
   "role": { "admin": "Administrator", "teacher": "Lehrer/in" },
   "nav": {
     "reports": "Berichte", "definitions": "Definitionen", "system": "System",

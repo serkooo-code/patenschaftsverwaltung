@@ -1,6 +1,6 @@
 {
   "app": { "name": "Değerlendirme Sistemi" },
-  "auth": { "email": "E-posta", "password": "Şifre", "login": "Giriş Yap", "logout": "Çıkış Yap" },
+  "auth": { "email": "E-posta", "password": "Şifre", "login": "Giriş Yap", "logout": "Çıkış Yap", "welcome": "Tekrar hoş geldiniz", "loginPrompt": "Devam etmek için giriş yapın.", "tagline": "Öğrenci gelişimini adım adım izleyin.", "subtitle": "Her öğrenci için hedef bazlı değerlendirmeler." },
   "role": { "admin": "Yönetici", "teacher": "Öğretmen" },
   "nav": {
     "reports": "Raporlar", "definitions": "Tanımlamalar", "system": "Sistem",

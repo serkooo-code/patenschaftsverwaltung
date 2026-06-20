@@ -3,7 +3,7 @@
     <form @submit.prevent="add" class="flex gap-2 mb-6">
       <slot name="fields" :form="form" />
       <button type="submit" class="btn-primary flex items-center gap-1 shrink-0" :disabled="saving">
-        <span class="material-icons text-base">add</span>
+        <span class="material-icons-round text-base">add</span>
         {{ $t('common.add') }}
       </button>
     </form>
@@ -28,7 +28,7 @@
             <slot name="row" :item="item" />
             <td class="px-4 py-3 text-right">
               <button @click="remove(item.id)" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                <span class="material-icons text-base" style="color:var(--color-danger)">delete</span>
+                <span class="material-icons-round text-base" style="color:var(--color-danger)">delete</span>
               </button>
             </td>
           </tr>

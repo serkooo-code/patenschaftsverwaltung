@@ -1,6 +1,6 @@
 {
   "app": { "name": "Evaluation System" },
-  "auth": { "email": "Email", "password": "Password", "login": "Sign In", "logout": "Sign Out" },
+  "auth": { "email": "Email", "password": "Password", "login": "Sign In", "logout": "Sign Out", "welcome": "Welcome back", "loginPrompt": "Sign in to continue.", "tagline": "Track student progress step by step.", "subtitle": "Goal-based evaluations for every student." },
   "role": { "admin": "Admin", "teacher": "Teacher" },
   "nav": {
     "reports": "Reports", "definitions": "Definitions", "system": "System",

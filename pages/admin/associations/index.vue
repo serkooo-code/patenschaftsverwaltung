@@ -43,7 +43,7 @@
           {{ section.label(row) }}
           <button @click="remove(section.type, section.aId(row), section.bId(row))"
             class="ml-1 hover:opacity-70">
-            <span class="material-icons text-sm">close</span>
+            <span class="material-icons-round text-sm">close</span>
           </button>
         </span>
         <span v-if="!(assocData as any)?.[section.key]?.length"

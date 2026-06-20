@@ -1,7 +1,7 @@
 <template>
   <div class="relative" ref="containerRef">
     <button @click="open = !open" class="flex items-center gap-1 px-2 py-1.5 rounded-lg transition-colors hover:bg-[var(--color-surface-alt)]">
-      <span class="material-icons text-lg" style="color: var(--color-text-muted)">language</span>
+      <span class="material-icons-round text-lg" style="color: var(--color-text-muted)">language</span>
       <span class="text-xs font-medium uppercase" style="color: var(--color-text-muted)">{{ locale }}</span>
     </button>
 

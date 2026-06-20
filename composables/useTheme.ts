@@ -1,11 +1,11 @@
-export type Palette = 'indigo' | 'teal' | 'rose'
+export type Palette = 'blue' | 'emerald' | 'violet'
 export type Mode = 'light' | 'dark'
 
 const STORAGE_KEY_PALETTE = 'app-palette'
 const STORAGE_KEY_MODE = 'app-mode'
 
 export function useTheme() {
-  const palette = useState<Palette>('palette', () => 'indigo')
+  const palette = useState<Palette>('palette', () => 'blue')
   const mode = useState<Mode>('mode', () => 'light')
 
   function applyTheme(p: Palette, m: Mode) {
@@ -33,7 +33,9 @@ export function useTheme() {
 
   function initTheme() {
     if (import.meta.client) {
-      const savedPalette = (localStorage.getItem(STORAGE_KEY_PALETTE) as Palette) ?? 'indigo'
+      const stored = localStorage.getItem(STORAGE_KEY_PALETTE)
+      const validPalettes: Palette[] = ['blue', 'emerald', 'violet']
+      const savedPalette = (validPalettes.includes(stored as Palette) ? stored : 'blue') as Palette
       const savedMode = (localStorage.getItem(STORAGE_KEY_MODE) as Mode) ?? 'light'
       palette.value = savedPalette
       mode.value = savedMode

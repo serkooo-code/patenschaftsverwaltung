@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-4">
     <div class="flex items-center gap-4">
       <NuxtLink to="/teacher" class="p-2 rounded-lg hover:bg-[var(--color-surface-alt)] transition-colors">
-        <span class="material-icons" style="color:var(--color-text-muted)">arrow_back</span>
+        <span class="material-icons-round" style="color:var(--color-text-muted)">arrow_back</span>
       </NuxtLink>
       <div v-if="student" class="flex-1">
         <h2 class="font-bold text-lg" style="color:var(--color-text)">{{ student.name }} {{ student.surname }}</h2>
@@ -24,12 +24,12 @@
     <template v-else-if="student">
       <div v-for="sess in student.sessions" :key="sess.id" class="card">
         <h3 class="font-semibold mb-3" style="color:var(--color-text)">
-          <span class="material-icons text-base align-middle mr-1" style="color:var(--color-primary)">event</span>
+          <span class="material-icons-round text-base align-middle mr-1" style="color:var(--color-primary)">event</span>
           {{ sess.name }}
         </h3>
         <div v-for="mod in sessionModules[sess.id] ?? []" :key="mod.id" class="mb-3">
           <p class="text-xs font-semibold mb-2 uppercase tracking-wide" style="color:var(--color-text-muted)">
-            <span class="material-icons text-xs align-middle mr-1">layers</span>{{ mod.name }}
+            <span class="material-icons-round text-xs align-middle mr-1">layers</span>{{ mod.name }}
           </p>
           <div class="flex flex-col gap-1.5 pl-4">
             <div v-for="goal in moduleGoals[mod.id] ?? []" :key="goal.id"

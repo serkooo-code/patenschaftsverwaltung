@@ -2,7 +2,7 @@
   <div>
     <div class="flex justify-end mb-6">
       <NuxtLink to="/admin/teachers/new" class="btn-primary flex items-center gap-2">
-        <span class="material-icons text-base">add</span>{{ $t('teacher.new') }}
+        <span class="material-icons-round text-base">add</span>{{ $t('teacher.new') }}
       </NuxtLink>
     </div>
     <div class="card p-0 overflow-hidden">
@@ -24,10 +24,10 @@
             <td class="text-center" style="border-right:none">
               <div class="flex items-center justify-center gap-1">
                 <NuxtLink :to="`/admin/teachers/${t.id}/edit`" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                  <span class="material-icons text-base" style="color:var(--color-text-muted)">edit</span>
+                  <span class="material-icons-round text-base" style="color:var(--color-text-muted)">edit</span>
                 </NuxtLink>
                 <button @click="remove(t.id)" class="p-1 rounded hover:bg-[var(--color-surface-alt)]">
-                  <span class="material-icons text-base" style="color:var(--color-danger)">delete</span>
+                  <span class="material-icons-round text-base" style="color:var(--color-danger)">delete</span>
                 </button>
               </div>
             </td>
