@@ -1,10 +1,11 @@
 /**
  * Creates the initial admin user.
- * Usage: node scripts/seed-admin.mjs <email> <password>
+ * Run AFTER the container has started at least once (so the DB schema is initialised).
+ * Usage:   node scripts/seed-admin.mjs <email> <password>
  * Example: node scripts/seed-admin.mjs admin@example.com secret123
+ * Env:     DB_PATH — path to the SQLite file (default: ./app.db)
  */
 import { DatabaseSync } from 'node:sqlite'
-import { createHash } from 'node:crypto'
 
 const [,, email, password] = process.argv
 if (!email || !password) {
@@ -12,22 +13,13 @@ if (!email || !password) {
   process.exit(1)
 }
 
-// Dynamic import so this works without the full build
 const { hashSync } = await import('bcryptjs')
 const hash = hashSync(password, 12)
 const dbPath = process.env.DB_PATH ?? './app.db'
 const db = new DatabaseSync(dbPath)
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL UNIQUE,
-    password_hash TEXT NOT NULL,
-    role TEXT NOT NULL DEFAULT 'viewer',
-    created_at TEXT NOT NULL
-  )
-`)
-
+// Schema is created by the app on first request — do not create tables here
+// to avoid schema drift between this script and server/utils/db.ts.
 const stmt = db.prepare(`
   INSERT INTO users (email, password_hash, role, created_at)
   VALUES (?, ?, 'admin', ?)
