@@ -1,0 +1,53 @@
+{
+  "app": { "name": "Bewertungssystem" },
+  "auth": { "email": "E-Mail", "password": "Passwort", "login": "Anmelden", "logout": "Abmelden" },
+  "role": { "admin": "Administrator", "teacher": "Lehrer/in" },
+  "nav": {
+    "reports": "Berichte", "definitions": "Definitionen", "system": "System",
+    "students": "Schüler", "teachers": "Lehrer", "classes": "Schulen",
+    "sessions": "Einheiten", "modules": "Module", "goals": "Ziele",
+    "disciplines": "Fachbereiche", "periods": "Bewertungszeiträume",
+    "associations": "Zuordnungen", "users": "Benutzer",
+    "myStudents": "Meine Schüler", "schedule": "Bewertungsübersicht"
+  },
+  "student": {
+    "name": "Name", "firstName": "Vorname", "lastName": "Nachname",
+    "no": "Schülernr.", "school": "Schule", "class": "Schule", "birthDate": "Geburtsdatum",
+    "teachers": "Verantwortliche Lehrer", "sessions": "Einheiten", "new": "Neuer Schüler"
+  },
+  "teacher": {
+    "name": "Name", "firstName": "Vorname", "lastName": "Nachname",
+    "no": "Lehrernr.", "link": "Lehrerdatensatz verknüpfen", "new": "Neuer Lehrer"
+  },
+  "class": { "name": "Schulname" },
+  "session": { "name": "Einheitsname" },
+  "module": { "name": "Modulname" },
+  "goal": { "name": "Zielname", "minAge": "Min. Alter", "maxAge": "Max. Alter" },
+  "discipline": { "name": "Fachbereichsname" },
+  "period": {
+    "name": "Zeitraumname", "startDate": "Start", "endDate": "Ende",
+    "select": "Zeitraum wählen", "selectFirst": "Bitte zuerst einen Zeitraum auswählen."
+  },
+  "assoc": {
+    "add": "Zuordnung hinzufügen", "type": "Typ",
+    "moduleGoal": "Modul → Ziel", "sessionModule": "Einheit → Modul",
+    "disciplineSession": "Fachbereich → Einheit", "teacherDiscipline": "Lehrer → Fachbereich",
+    "classTeacher": "Klasse → Lehrer"
+  },
+  "eval": {
+    "evaluate": "Bewerten", "completed": "Abgeschlossen", "working": "In Arbeit",
+    "pending": "Ausstehend", "progress": "Fortschritt", "noSessions": "Diesem Schüler wurden keine Einheiten zugewiesen."
+  },
+  "result": { "completed": "Abgeschlossen", "working": "In Arbeit", "pending": "Ausstehend" },
+  "report": {
+    "teacherStats": "Lehrerstatistiken", "totalStudents": "Schüler gesamt",
+    "studentCompletion": "Schüler-Abschlussquoten"
+  },
+  "user": { "email": "E-Mail", "role": "Rolle", "new": "Neuer Benutzer" },
+  "common": {
+    "search": "Suche...", "save": "Speichern", "saving": "Speichert...",
+    "cancel": "Abbrechen", "edit": "Bearbeiten", "delete": "Löschen", "add": "Hinzufügen",
+    "loading": "Lädt...", "noData": "Keine Einträge", "none": "Keine"
+  },
+  "theme": { "palette": "Farbpalette", "light": "Hell", "dark": "Dunkel" }
+}

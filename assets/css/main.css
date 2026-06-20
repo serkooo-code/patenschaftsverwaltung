@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Palette 1: Indigo (default) ─── */
+:root[data-palette="indigo"],
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-danger: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-sidebar-bg: #1e1b4b;
+  --color-sidebar-text: #c7d2fe;
+  --color-sidebar-active: #4f46e5;
+}
+
+:root[data-palette="indigo"].dark {
+  --color-primary: #818cf8;
+  --color-primary-hover: #a5b4fc;
+  --color-surface: #1e293b;
+  --color-surface-alt: #0f172a;
+  --color-border: #334155;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-sidebar-bg: #0f0d2a;
+  --color-sidebar-text: #c7d2fe;
+  --color-sidebar-active: #4f46e5;
+}
+
+/* ─── Palette 2: Teal ─── */
+:root[data-palette="teal"] {
+  --color-primary: #0d9488;
+  --color-primary-hover: #0f766e;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f0fdfa;
+  --color-border: #ccfbf1;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-danger: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-sidebar-bg: #042f2e;
+  --color-sidebar-text: #99f6e4;
+  --color-sidebar-active: #0d9488;
+}
+
+:root[data-palette="teal"].dark {
+  --color-primary: #2dd4bf;
+  --color-primary-hover: #5eead4;
+  --color-surface: #1e293b;
+  --color-surface-alt: #0f172a;
+  --color-border: #1e3a3a;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-sidebar-bg: #021a1a;
+  --color-sidebar-text: #99f6e4;
+  --color-sidebar-active: #0d9488;
+}
+
+/* ─── Palette 3: Rose ─── */
+:root[data-palette="rose"] {
+  --color-primary: #e11d48;
+  --color-primary-hover: #be123c;
+  --color-surface: #ffffff;
+  --color-surface-alt: #fff1f2;
+  --color-border: #fecdd3;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-danger: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-sidebar-bg: #4c0519;
+  --color-sidebar-text: #fda4af;
+  --color-sidebar-active: #e11d48;
+}
+
+:root[data-palette="rose"].dark {
+  --color-primary: #fb7185;
+  --color-primary-hover: #fda4af;
+  --color-surface: #1e293b;
+  --color-surface-alt: #0f172a;
+  --color-border: #3d1a23;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-sidebar-bg: #2a0812;
+  --color-sidebar-text: #fda4af;
+  --color-sidebar-active: #e11d48;
+}
+
+/* ─── Base styles ─── */
+body {
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  font-family: 'Figtree', sans-serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg font-medium text-white transition-colors;
+    background-color: var(--color-primary);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors border;
+    color: var(--color-text);
+    border-color: var(--color-border);
+    background-color: var(--color-surface);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-surface-alt);
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 rounded-lg font-medium text-white transition-colors;
+    background-color: var(--color-danger);
+  }
+  .btn-danger:hover {
+    opacity: 0.9;
+  }
+
+  .card {
+    @apply rounded-xl p-6 shadow-sm;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .form-input {
+    @apply w-full px-3 py-2 rounded-lg text-sm transition-colors outline-none;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+  .form-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+
+  .form-label {
+    @apply block text-sm font-medium mb-1;
+    color: var(--color-text-muted);
+  }
+
+  .badge-active {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background-color: color-mix(in srgb, var(--color-success) 15%, transparent);
+    color: var(--color-success);
+  }
+
+  .badge-paused {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background-color: color-mix(in srgb, var(--color-warning) 15%, transparent);
+    color: var(--color-warning);
+  }
+
+  .badge-ended {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    background-color: color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+    color: var(--color-text-muted);
+  }
+
+  .table-row-hover:hover {
+    background-color: var(--color-surface-alt);
+  }
+
+  /* Shared data table styles */
+  .data-table {
+    @apply w-full text-sm;
+    border-collapse: collapse;
+  }
+  .data-table th {
+    @apply text-left px-4 py-3 font-semibold;
+    color: var(--color-text-muted);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+    background-color: var(--color-surface-alt);
+  }
+  .data-table th:last-child { border-right: none; }
+  .data-table td {
+    @apply px-4 py-3;
+    color: var(--color-text);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .data-table td:last-child { border-right: none; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:hover { background-color: var(--color-surface-alt); }
+}

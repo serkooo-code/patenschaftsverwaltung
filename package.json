@@ -1,0 +1,29 @@
+{
+  "name": "patenschaftsverwaltung",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "db:push": "drizzle-kit push"
+  },
+  "dependencies": {
+    "nuxt": "^3.16.2",
+    "@nuxtjs/i18n": "^9.5.5",
+    "nuxt-auth-utils": "^0.5.19",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "drizzle-orm": "^0.41.0",
+    "bcryptjs": "^3.0.2",
+    "h3": "^1.15.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "drizzle-kit": "^0.30.6",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  }
+}

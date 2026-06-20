@@ -1,0 +1,53 @@
+{
+  "app": { "name": "Evaluation System" },
+  "auth": { "email": "Email", "password": "Password", "login": "Sign In", "logout": "Sign Out" },
+  "role": { "admin": "Admin", "teacher": "Teacher" },
+  "nav": {
+    "reports": "Reports", "definitions": "Definitions", "system": "System",
+    "students": "Students", "teachers": "Teachers", "classes": "Schools",
+    "sessions": "Sessions", "modules": "Modules", "goals": "Goals",
+    "disciplines": "Disciplines", "periods": "Evaluation Periods",
+    "associations": "Associations", "users": "Users",
+    "myStudents": "My Students", "schedule": "Evaluation Schedule"
+  },
+  "student": {
+    "name": "Full Name", "firstName": "First Name", "lastName": "Last Name",
+    "no": "Student No.", "school": "School", "class": "School", "birthDate": "Birth Date",
+    "teachers": "Responsible Teachers", "sessions": "Sessions", "new": "New Student"
+  },
+  "teacher": {
+    "name": "Full Name", "firstName": "First Name", "lastName": "Last Name",
+    "no": "Teacher No.", "link": "Link to Teacher Record", "new": "New Teacher"
+  },
+  "class": { "name": "School Name" },
+  "session": { "name": "Session Name" },
+  "module": { "name": "Module Name" },
+  "goal": { "name": "Goal Name", "minAge": "Min Age", "maxAge": "Max Age" },
+  "discipline": { "name": "Discipline Name" },
+  "period": {
+    "name": "Period Name", "startDate": "Start", "endDate": "End",
+    "select": "Select Period", "selectFirst": "Please select a period first."
+  },
+  "assoc": {
+    "add": "Add Association", "type": "Type",
+    "moduleGoal": "Module → Goal", "sessionModule": "Session → Module",
+    "disciplineSession": "Discipline → Session", "teacherDiscipline": "Teacher → Discipline",
+    "classTeacher": "Class → Teacher"
+  },
+  "eval": {
+    "evaluate": "Evaluate", "completed": "Completed", "working": "In Progress",
+    "pending": "Pending", "progress": "Progress", "noSessions": "No sessions assigned to this student."
+  },
+  "result": { "completed": "Completed", "working": "In Progress", "pending": "Pending" },
+  "report": {
+    "teacherStats": "Teacher Statistics", "totalStudents": "Total Students",
+    "studentCompletion": "Student Completion Rates"
+  },
+  "user": { "email": "Email", "role": "Role", "new": "New User" },
+  "common": {
+    "search": "Search...", "save": "Save", "saving": "Saving...",
+    "cancel": "Cancel", "edit": "Edit", "delete": "Delete", "add": "Add",
+    "loading": "Loading...", "noData": "No records found", "none": "None"
+  },
+  "theme": { "palette": "Color Palette", "light": "Light", "dark": "Dark" }
+}

@@ -1,0 +1,53 @@
+{
+  "app": { "name": "Değerlendirme Sistemi" },
+  "auth": { "email": "E-posta", "password": "Şifre", "login": "Giriş Yap", "logout": "Çıkış Yap" },
+  "role": { "admin": "Yönetici", "teacher": "Öğretmen" },
+  "nav": {
+    "reports": "Raporlar", "definitions": "Tanımlamalar", "system": "Sistem",
+    "students": "Öğrenciler", "teachers": "Öğretmenler", "classes": "Okullar",
+    "sessions": "Seanslar", "modules": "Modüller", "goals": "Hedefler",
+    "disciplines": "Branşlar", "periods": "Değerlendirme Periyotları",
+    "associations": "Tanımlamalar", "users": "Kullanıcılar",
+    "myStudents": "Öğrencilerim", "schedule": "Değerlendirme Çizelgesi"
+  },
+  "student": {
+    "name": "Ad Soyad", "firstName": "Ad", "lastName": "Soyad",
+    "no": "Öğrenci No", "school": "Okul", "class": "Okul", "birthDate": "Doğum Tarihi",
+    "teachers": "Sorumlu Öğretmenler", "sessions": "Seanslar", "new": "Yeni Öğrenci"
+  },
+  "teacher": {
+    "name": "Ad Soyad", "firstName": "Ad", "lastName": "Soyad",
+    "no": "Öğretmen No", "link": "Öğretmen Kaydına Bağla", "new": "Yeni Öğretmen"
+  },
+  "class": { "name": "Okul Adı" },
+  "session": { "name": "Seans Adı" },
+  "module": { "name": "Modül Adı" },
+  "goal": { "name": "Hedef Adı", "minAge": "Min Yaş", "maxAge": "Max Yaş" },
+  "discipline": { "name": "Branş Adı" },
+  "period": {
+    "name": "Periyot Adı", "startDate": "Başlangıç", "endDate": "Bitiş",
+    "select": "Periyot Seç", "selectFirst": "Lütfen önce bir periyot seçin."
+  },
+  "assoc": {
+    "add": "Tanımlama Ekle", "type": "Tür",
+    "moduleGoal": "Modül → Hedef", "sessionModule": "Seans → Modül",
+    "disciplineSession": "Branş → Seans", "teacherDiscipline": "Öğretmen → Branş",
+    "classTeacher": "Şube → Öğretmen"
+  },
+  "eval": {
+    "evaluate": "Değerlendir", "completed": "Tamamlandı", "working": "Çalışılan",
+    "pending": "Bekleyen", "progress": "İlerleme", "noSessions": "Bu öğrenciye seans atanmamış."
+  },
+  "result": { "completed": "Tamamlandı", "working": "Çalışılan", "pending": "Bekleyen" },
+  "report": {
+    "teacherStats": "Öğretmen İstatistikleri", "totalStudents": "Toplam Öğrenci",
+    "studentCompletion": "Öğrenci Tamamlanma Oranları"
+  },
+  "user": { "email": "E-posta", "role": "Rol", "new": "Yeni Kullanıcı" },
+  "common": {
+    "search": "Ara...", "save": "Kaydet", "saving": "Kaydediliyor...",
+    "cancel": "İptal", "edit": "Düzenle", "delete": "Sil", "add": "Ekle",
+    "loading": "Yükleniyor...", "noData": "Kayıt bulunamadı", "none": "Yok"
+  },
+  "theme": { "palette": "Renk Paleti", "light": "Açık", "dark": "Koyu" }
+}
