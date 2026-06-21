@@ -139,11 +139,9 @@ function initSchema(sqlite: DatabaseSync) {
       updated_at TEXT NOT NULL
     );
   `)
-  // Migration: add school_no to existing databases that predate this column
+  // Migrations for columns added after initial schema
   try { sqlite.exec('ALTER TABLE classes ADD COLUMN school_no TEXT') } catch { /* already exists */ }
+  try { sqlite.exec('ALTER TABLE users ADD COLUMN teacher_id INTEGER REFERENCES teachers(id)') } catch { /* already exists */ }
   // Backfill school_no for rows that have NULL (created before this migration)
-  sqlite.exec(`
-    UPDATE classes SET school_no = CAST(id AS TEXT)
-    WHERE school_no IS NULL
-  `)
+  sqlite.exec(`UPDATE classes SET school_no = CAST(id AS TEXT) WHERE school_no IS NULL`)
 }
