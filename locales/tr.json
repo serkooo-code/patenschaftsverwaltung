@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Değerlendirme Sistemi" },
+  "app": { "name": "EduTrack" },
   "auth": { "email": "E-posta", "password": "Şifre", "login": "Giriş Yap", "logout": "Çıkış Yap", "welcome": "Tekrar hoş geldiniz", "loginPrompt": "Devam etmek için giriş yapın.", "tagline": "Öğrenci gelişimini adım adım izleyin.", "subtitle": "Her öğrenci için hedef bazlı değerlendirmeler." },
   "role": { "admin": "Yönetici", "teacher": "Öğretmen" },
   "nav": {
@@ -19,7 +19,7 @@
     "name": "Ad Soyad", "firstName": "Ad", "lastName": "Soyad",
     "no": "Öğretmen No", "link": "Öğretmen Kaydına Bağla", "new": "Yeni Öğretmen"
   },
-  "class": { "name": "Okul Adı" },
+  "class": { "no": "Okul No", "name": "Okul Adı", "overview": "Okullara Göre Öğrenciler", "noStudents": "Öğrenci atanmamış" },
   "session": { "name": "Seans Adı" },
   "module": { "name": "Modül Adı" },
   "goal": { "name": "Hedef Adı", "minAge": "Min Yaş", "maxAge": "Max Yaş" },
@@ -32,7 +32,10 @@
     "add": "Tanımlama Ekle", "type": "Tür",
     "moduleGoal": "Modül → Hedef", "sessionModule": "Seans → Modül",
     "disciplineSession": "Branş → Seans", "teacherDiscipline": "Öğretmen → Branş",
-    "classTeacher": "Şube → Öğretmen"
+    "classTeacher": "Şube → Öğretmen",
+    "overview": "Okul – Öğretmen – Öğrenci Görünümü",
+    "noTeachers": "Öğretmen atanmamış",
+    "noStudents": "Öğrenci atanmamış"
   },
   "eval": {
     "evaluate": "Değerlendir", "completed": "Tamamlandı", "working": "Çalışılan",

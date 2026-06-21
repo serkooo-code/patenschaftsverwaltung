@@ -11,8 +11,8 @@
           <input v-model="form.surname" class="form-input" required />
         </div>
         <div>
-          <label class="form-label">{{ $t('student.no') }} *</label>
-          <input v-model="form.studentNo" class="form-input" required />
+          <label class="form-label">{{ $t('student.no') }}</label>
+          <div class="form-input flex items-center text-sm" style="color:var(--color-text-muted);background:var(--color-surface-alt);cursor:default">{{ s.studentNo }}</div>
         </div>
         <div>
           <label class="form-label">{{ $t('student.birthDate') }} *</label>
@@ -76,7 +76,6 @@ const s = student.value as any
 const form = reactive({
   name: s?.name ?? '',
   surname: s?.surname ?? '',
-  studentNo: s?.studentNo ?? '',
   birthDate: s?.birthDate ?? '',
   classId: s?.classId ?? null as number | null,
   teacherIds: (s?.teachers ?? []).map((t: any) => t.id) as number[],

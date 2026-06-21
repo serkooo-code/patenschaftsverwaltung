@@ -34,6 +34,7 @@ function initSchema(sqlite: DatabaseSync) {
   sqlite.exec(`
     CREATE TABLE IF NOT EXISTS classes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      school_no TEXT UNIQUE,
       name TEXT NOT NULL UNIQUE,
       created_at TEXT NOT NULL
     );
@@ -137,5 +138,12 @@ function initSchema(sqlite: DatabaseSync) {
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
+  `)
+  // Migration: add school_no to existing databases that predate this column
+  try { sqlite.exec('ALTER TABLE classes ADD COLUMN school_no TEXT') } catch { /* already exists */ }
+  // Backfill school_no for rows that have NULL (created before this migration)
+  sqlite.exec(`
+    UPDATE classes SET school_no = CAST(id AS TEXT)
+    WHERE school_no IS NULL
   `)
 }

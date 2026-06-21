@@ -50,12 +50,76 @@
           class="text-sm" style="color:var(--color-text-muted)">{{ $t('common.noData') }}</span>
       </div>
     </div>
+
+    <!-- School – Teacher – Student overview -->
+    <div>
+      <p class="text-xs font-bold uppercase tracking-wider mb-4" style="color:var(--color-text-muted)">
+        {{ $t('assoc.overview') }}
+      </p>
+      <div class="grid gap-4">
+        <div v-if="!overview?.length" class="card py-8 text-center text-sm" style="color:var(--color-text-muted)">
+          {{ $t('common.noData') }}
+        </div>
+        <div v-for="cls in overview" :key="cls.id" class="card">
+          <!-- School header -->
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-icons-round text-base" style="color:var(--color-primary)">school</span>
+            <span class="font-bold text-sm">{{ cls.name }}</span>
+            <span class="text-xs ml-1" style="color:var(--color-text-muted)">#{{ cls.schoolNo }}</span>
+          </div>
+
+          <!-- Teachers row -->
+          <div class="mb-4">
+            <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--color-text-muted)">
+              {{ $t('nav.teachers') }}
+            </p>
+            <div v-if="cls.teachers?.length" class="flex flex-wrap gap-2">
+              <span
+                v-for="teacher in cls.teachers"
+                :key="teacher.id"
+                class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg font-medium"
+                style="background:var(--color-primary-subtle);color:var(--color-primary);border:1px solid color-mix(in srgb,var(--color-primary) 20%,transparent)"
+              >
+                <span class="material-icons-round text-xs" style="font-size:14px">person</span>
+                {{ teacher.surname }}, {{ teacher.name }}
+                <span style="opacity:0.6">#{{ teacher.teacherNo }}</span>
+              </span>
+            </div>
+            <p v-else class="text-xs" style="color:var(--color-text-muted)">{{ $t('assoc.noTeachers') }}</p>
+          </div>
+
+          <!-- Students row -->
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--color-text-muted)">
+              {{ $t('nav.students') }}
+              <span class="ml-2 font-bold px-1.5 py-0.5 rounded-full text-xs"
+                style="background:var(--color-surface-alt);color:var(--color-text-muted)">
+                {{ cls.students?.length ?? 0 }}
+              </span>
+            </p>
+            <div v-if="cls.students?.length" class="flex flex-wrap gap-2">
+              <span
+                v-for="student in cls.students"
+                :key="student.id"
+                class="text-xs px-2.5 py-1 rounded-lg font-medium"
+                style="background:var(--color-surface-alt);color:var(--color-text);border:1px solid var(--color-border)"
+              >
+                {{ student.surname }}, {{ student.name }}
+                <span class="ml-1" style="opacity:0.5">#{{ student.studentNo }}</span>
+              </span>
+            </div>
+            <p v-else class="text-xs" style="color:var(--color-text-muted)">{{ $t('assoc.noStudents') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin' })
 const { data: assocData, refresh } = await useFetch('/api/associations')
+const { data: overview, refresh: refreshOverview } = await useFetch('/api/associations/overview')
 const [{ data: moduleList }, { data: goalList }, { data: sessionList },
   { data: disciplineList }, { data: teacherList }, { data: classList }] = await Promise.all([
   useFetch('/api/modules'), useFetch('/api/goals'), useFetch('/api/sessions'),
@@ -103,11 +167,13 @@ async function add() {
     await $fetch('/api/associations', { method: 'POST', body: { type: form.type, a: form.a, b: form.b } })
     form.a = ''; form.b = ''
     refresh()
+    refreshOverview()
   } catch (e: any) { error.value = e?.data?.statusMessage ?? 'Fehler' }
 }
 
 async function remove(type: string, a: number, b: number) {
   await $fetch('/api/associations', { method: 'DELETE', body: { type, a, b } })
   refresh()
+  refreshOverview()
 }
 </script>

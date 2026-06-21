@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Evaluation System" },
+  "app": { "name": "EduTrack" },
   "auth": { "email": "Email", "password": "Password", "login": "Sign In", "logout": "Sign Out", "welcome": "Welcome back", "loginPrompt": "Sign in to continue.", "tagline": "Track student progress step by step.", "subtitle": "Goal-based evaluations for every student." },
   "role": { "admin": "Admin", "teacher": "Teacher" },
   "nav": {
@@ -19,7 +19,7 @@
     "name": "Full Name", "firstName": "First Name", "lastName": "Last Name",
     "no": "Teacher No.", "link": "Link to Teacher Record", "new": "New Teacher"
   },
-  "class": { "name": "School Name" },
+  "class": { "no": "School No.", "name": "School Name", "overview": "Students per School", "noStudents": "No students assigned" },
   "session": { "name": "Session Name" },
   "module": { "name": "Module Name" },
   "goal": { "name": "Goal Name", "minAge": "Min Age", "maxAge": "Max Age" },
@@ -32,7 +32,10 @@
     "add": "Add Association", "type": "Type",
     "moduleGoal": "Module → Goal", "sessionModule": "Session → Module",
     "disciplineSession": "Discipline → Session", "teacherDiscipline": "Teacher → Discipline",
-    "classTeacher": "Class → Teacher"
+    "classTeacher": "Class → Teacher",
+    "overview": "School – Teacher – Student Overview",
+    "noTeachers": "No teacher assigned",
+    "noStudents": "No student assigned"
   },
   "eval": {
     "evaluate": "Evaluate", "completed": "Completed", "working": "In Progress",

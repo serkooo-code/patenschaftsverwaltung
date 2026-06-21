@@ -10,8 +10,8 @@
         <input v-model="form.surname" class="form-input" required />
       </div>
       <div>
-        <label class="form-label">{{ $t('teacher.no') }} *</label>
-        <input v-model="form.teacherNo" class="form-input" required />
+        <label class="form-label">{{ $t('teacher.no') }}</label>
+        <div class="form-input flex items-center text-sm" style="color:var(--color-text-muted);background:var(--color-surface-alt);cursor:default">{{ t.teacherNo }}</div>
       </div>
       <p v-if="error" class="text-sm" style="color:var(--color-danger)">{{ error }}</p>
       <div class="flex gap-3">
@@ -33,7 +33,7 @@ const { data: teacher } = await useFetch(`/api/teachers/${id}`)
 if (!teacher.value) await navigateTo('/admin/teachers')
 
 const t = teacher.value as any
-const form = reactive({ name: t?.name ?? '', surname: t?.surname ?? '', teacherNo: t?.teacherNo ?? '' })
+const form = reactive({ name: t?.name ?? '', surname: t?.surname ?? '' })
 const loading = ref(false)
 const error = ref('')
 

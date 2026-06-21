@@ -1,5 +1,5 @@
 {
-  "app": { "name": "Bewertungssystem" },
+  "app": { "name": "EduTrack" },
   "auth": { "email": "E-Mail", "password": "Passwort", "login": "Anmelden", "logout": "Abmelden", "welcome": "Willkommen zurück", "loginPrompt": "Bitte melden Sie sich an, um fortzufahren.", "tagline": "Schülerentwicklung Schritt für Schritt verfolgen.", "subtitle": "Zielbasierte Bewertungen für jeden Schüler." },
   "role": { "admin": "Administrator", "teacher": "Lehrer/in" },
   "nav": {
@@ -19,7 +19,7 @@
     "name": "Name", "firstName": "Vorname", "lastName": "Nachname",
     "no": "Lehrernr.", "link": "Lehrerdatensatz verknüpfen", "new": "Neuer Lehrer"
   },
-  "class": { "name": "Schulname" },
+  "class": { "no": "Schule Nr.", "name": "Schulname", "overview": "Schüler je Schule", "noStudents": "Keine Schüler zugeordnet" },
   "session": { "name": "Einheitsname" },
   "module": { "name": "Modulname" },
   "goal": { "name": "Zielname", "minAge": "Min. Alter", "maxAge": "Max. Alter" },
@@ -32,7 +32,10 @@
     "add": "Zuordnung hinzufügen", "type": "Typ",
     "moduleGoal": "Modul → Ziel", "sessionModule": "Einheit → Modul",
     "disciplineSession": "Fachbereich → Einheit", "teacherDiscipline": "Lehrer → Fachbereich",
-    "classTeacher": "Klasse → Lehrer"
+    "classTeacher": "Klasse → Lehrer",
+    "overview": "Schule – Lehrer – Schüler Übersicht",
+    "noTeachers": "Kein Lehrer zugeordnet",
+    "noStudents": "Kein Schüler zugeordnet"
   },
   "eval": {
     "evaluate": "Bewerten", "completed": "Abgeschlossen", "working": "In Arbeit",

@@ -7,7 +7,7 @@ export default defineEventHandler(async (e) => {
   await requireAdmin(e)
   const id = Number(getRouterParam(e, 'id'))
   const body = await readBody<{
-    name: string; surname: string; studentNo: string; birthDate: string
+    name: string; surname: string; birthDate: string
     classId?: number | null; teacherIds?: number[]; sessionIds?: number[]
   }>(e)
 
@@ -18,7 +18,6 @@ export default defineEventHandler(async (e) => {
   await db.update(students).set({
     name: body.name,
     surname: body.surname,
-    studentNo: body.studentNo,
     birthDate: body.birthDate,
     classId: body.classId ?? null,
   }).where(eq(students.id, id))

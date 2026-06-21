@@ -11,10 +11,6 @@
           <input v-model="form.surname" class="form-input" required />
         </div>
         <div>
-          <label class="form-label">{{ $t('student.no') }} *</label>
-          <input v-model="form.studentNo" class="form-input" required />
-        </div>
-        <div>
           <label class="form-label">{{ $t('student.birthDate') }} *</label>
           <input v-model="form.birthDate" type="date" class="form-input" required />
         </div>
@@ -63,7 +59,7 @@ definePageMeta({ middleware: 'admin' })
 const [{ data: classes }, { data: teachers }, { data: sessions }] = await Promise.all([
   useFetch('/api/classes'), useFetch('/api/teachers'), useFetch('/api/sessions'),
 ])
-const form = reactive({ name: '', surname: '', studentNo: '', birthDate: '', classId: null as number | null, teacherIds: [] as number[], sessionIds: [] as number[] })
+const form = reactive({ name: '', surname: '', birthDate: '', classId: null as number | null, teacherIds: [] as number[], sessionIds: [] as number[] })
 const loading = ref(false)
 const error = ref('')
 

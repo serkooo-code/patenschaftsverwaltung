@@ -4,6 +4,7 @@ import { sqliteTable, integer, text, primaryKey } from 'drizzle-orm/sqlite-core'
 
 export const classes = sqliteTable('classes', {
   id: integer('id').primaryKey({ autoIncrement: true }),
+  schoolNo: text('school_no').unique(),
   name: text('name').notNull().unique(),
   createdAt: text('created_at').notNull().$defaultFn(() => new Date().toISOString()),
 })

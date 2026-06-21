@@ -9,10 +9,6 @@
         <label class="form-label">{{ $t('teacher.lastName') }} *</label>
         <input v-model="form.surname" class="form-input" required />
       </div>
-      <div>
-        <label class="form-label">{{ $t('teacher.no') }} *</label>
-        <input v-model="form.teacherNo" class="form-input" required />
-      </div>
       <p v-if="error" class="text-sm" style="color:var(--color-danger)">{{ error }}</p>
       <div class="flex gap-3">
         <button type="submit" class="btn-primary" :disabled="loading">
@@ -26,7 +22,7 @@
 
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin' })
-const form = reactive({ name: '', surname: '', teacherNo: '' })
+const form = reactive({ name: '', surname: '' })
 const loading = ref(false)
 const error = ref('')
 

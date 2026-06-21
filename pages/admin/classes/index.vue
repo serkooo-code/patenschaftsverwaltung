@@ -12,15 +12,17 @@
       <table class="data-table">
         <thead>
           <tr>
+            <th class="w-20">{{ $t('class.no') }}</th>
             <th class="text-left">{{ $t('class.name') }}</th>
             <th class="w-24 text-center" style="border-right:none"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-if="!data?.length">
-            <td colspan="2" class="text-center py-8" style="color:var(--color-text-muted);border-right:none">{{ $t('common.noData') }}</td>
+            <td colspan="3" class="text-center py-8" style="color:var(--color-text-muted);border-right:none">{{ $t('common.noData') }}</td>
           </tr>
           <tr v-for="item in data" :key="item.id">
+            <td class="text-sm" style="color:var(--color-text-muted)">{{ item.schoolNo ?? '—' }}</td>
             <td>
               <template v-if="editingId === item.id">
                 <input v-model="editName" class="form-input py-1 text-sm" @keydown.esc="cancelEdit" />
@@ -56,6 +58,7 @@
 
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin' })
+
 const { data, refresh } = await useFetch('/api/classes')
 
 const newName = ref('')
