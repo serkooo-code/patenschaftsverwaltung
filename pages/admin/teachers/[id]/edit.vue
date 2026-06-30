@@ -4,13 +4,15 @@
     <!-- Stammdaten + Schulen + Branşlar -->
     <div class="card">
       <form id="teacher-form" @submit.prevent="submit" class="flex flex-col gap-4">
-        <div>
-          <label class="form-label">{{ $t('teacher.firstName') }} *</label>
-          <input v-model="form.name" class="form-input" required />
-        </div>
-        <div>
-          <label class="form-label">{{ $t('teacher.lastName') }} *</label>
-          <input v-model="form.surname" class="form-input" required />
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="form-label">{{ $t('teacher.firstName') }} *</label>
+            <input v-model="form.name" class="form-input" required />
+          </div>
+          <div>
+            <label class="form-label">{{ $t('teacher.lastName') }} *</label>
+            <input v-model="form.surname" class="form-input" required />
+          </div>
         </div>
         <div>
           <label class="form-label">{{ $t('teacher.no') }}</label>
