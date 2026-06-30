@@ -5,24 +5,21 @@
       <!-- Subtle dot-grid texture -->
       <div class="auth-panel__grid absolute inset-0 pointer-events-none" />
 
-      <!-- Logo mark -->
-      <div class="relative z-10">
-        <div
-          class="w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-lg select-none"
-          style="background-color: rgba(255,255,255,0.15); color: white; backdrop-filter: blur(4px)"
-        >D</div>
-      </div>
+      <!-- Spacer to balance flex layout -->
+      <div></div>
 
       <!-- Central brand copy -->
       <div class="relative z-10 max-w-sm">
-        <h1 class="auth-panel__title">{{ $t('app.name') }}</h1>
+        <div class="bg-white rounded-2xl px-6 py-5 shadow-lg mb-6 inline-block">
+          <img src="/harika-logo.svg" alt="Harika" class="h-24 w-auto" />
+        </div>
         <p class="auth-panel__tagline">{{ $t('auth.tagline') }}</p>
         <p class="auth-panel__subtitle">{{ $t('auth.subtitle') }}</p>
       </div>
 
       <!-- Footer -->
       <div class="relative z-10 flex items-center gap-3">
-        <span class="auth-panel__footer-text">{{ $t('app.name') }} &copy; {{ year }}</span>
+        <span class="auth-panel__footer-text">Harika &copy; {{ year }}</span>
       </div>
     </div>
 

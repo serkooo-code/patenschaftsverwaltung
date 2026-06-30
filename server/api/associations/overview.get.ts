@@ -29,9 +29,15 @@ export default defineEventHandler(async (e) => {
         .filter(ct => ct.classId === c.id)
         .map(ct => teacherMap.get(ct.teacherId))
         .filter(Boolean)
-        .sort((a, b) => a!.surname.localeCompare(b!.surname)),
+        .sort((a, b) => {
+          const s = a!.surname.localeCompare(b!.surname, 'tr')
+          return s !== 0 ? s : a!.name.localeCompare(b!.name, 'tr')
+        }),
       students: allStudents
         .filter(s => s.classId === c.id)
-        .sort((a, b) => a.surname.localeCompare(b.surname)),
+        .sort((a, b) => {
+          const s = a.surname.localeCompare(b.surname, 'tr')
+          return s !== 0 ? s : a.name.localeCompare(b.name, 'tr')
+        }),
     }))
 })

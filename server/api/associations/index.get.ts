@@ -1,22 +1,41 @@
 import { requireAuth } from '~/server/utils/auth'
 import { getDb } from '~/server/utils/db'
-import { moduleGoals, goals, modules, sessionModules, sessions, disciplineSessions, disciplines, teacherDisciplines, teachers, classTeachers, classes } from '~/server/db/schema'
-import { eq } from 'drizzle-orm'
+import { moduleGoals, goals, modules, sessionModules, sessions, disciplineSessions, disciplines } from '~/server/db/schema'
 
 export default defineEventHandler(async (e) => {
   await requireAuth(e)
   const db = getDb()
-  const [mgRows, smRows, dsRows, tdRows, ctRows] = await Promise.all([
-    db.select({ moduleId: moduleGoals.moduleId, moduleName: modules.name, goalId: goals.id, goalName: goals.name })
-      .from(moduleGoals).innerJoin(modules, eq(moduleGoals.moduleId, modules.id)).innerJoin(goals, eq(moduleGoals.goalId, goals.id)),
-    db.select({ sessionId: sessionModules.sessionId, sessionName: sessions.name, moduleId: modules.id, moduleName: modules.name })
-      .from(sessionModules).innerJoin(sessions, eq(sessionModules.sessionId, sessions.id)).innerJoin(modules, eq(sessionModules.moduleId, modules.id)),
-    db.select({ disciplineId: disciplineSessions.disciplineId, disciplineName: disciplines.name, sessionId: sessions.id, sessionName: sessions.name })
-      .from(disciplineSessions).innerJoin(disciplines, eq(disciplineSessions.disciplineId, disciplines.id)).innerJoin(sessions, eq(disciplineSessions.sessionId, sessions.id)),
-    db.select({ teacherId: teacherDisciplines.teacherId, teacherName: teachers.name, teacherSurname: teachers.surname, disciplineId: disciplines.id, disciplineName: disciplines.name })
-      .from(teacherDisciplines).innerJoin(teachers, eq(teacherDisciplines.teacherId, teachers.id)).innerJoin(disciplines, eq(teacherDisciplines.disciplineId, disciplines.id)),
-    db.select({ classId: classTeachers.classId, className: classes.name, teacherId: teachers.id, teacherName: teachers.name, teacherSurname: teachers.surname })
-      .from(classTeachers).innerJoin(classes, eq(classTeachers.classId, classes.id)).innerJoin(teachers, eq(classTeachers.teacherId, teachers.id)),
+
+  const [
+    allModules, allGoals, allSessions, allDisciplines,
+    mgRows, smRows, dsRows,
+  ] = await Promise.all([
+    db.select({ id: modules.id, name: modules.name }).from(modules),
+    db.select({ id: goals.id, name: goals.name }).from(goals),
+    db.select({ id: sessions.id, name: sessions.name }).from(sessions),
+    db.select({ id: disciplines.id, name: disciplines.name }).from(disciplines),
+    db.select({ moduleId: moduleGoals.moduleId, goalId: moduleGoals.goalId }).from(moduleGoals),
+    db.select({ sessionId: sessionModules.sessionId, moduleId: sessionModules.moduleId }).from(sessionModules),
+    db.select({ disciplineId: disciplineSessions.disciplineId, sessionId: disciplineSessions.sessionId }).from(disciplineSessions),
   ])
-  return { moduleGoals: mgRows, sessionModules: smRows, disciplineSessions: dsRows, teacherDisciplines: tdRows, classTeachers: ctRows }
+
+  const moduleMap = new Map(allModules.map(m => [m.id, m.name]))
+  const goalMap = new Map(allGoals.map(g => [g.id, g.name]))
+  const sessionMap = new Map(allSessions.map(s => [s.id, s.name]))
+  const disciplineMap = new Map(allDisciplines.map(d => [d.id, d.name]))
+
+  return {
+    moduleGoal: mgRows.map(r => ({
+      moduleId: r.moduleId, moduleName: moduleMap.get(r.moduleId),
+      goalId: r.goalId, goalName: goalMap.get(r.goalId),
+    })),
+    sessionModule: smRows.map(r => ({
+      sessionId: r.sessionId, sessionName: sessionMap.get(r.sessionId),
+      moduleId: r.moduleId, moduleName: moduleMap.get(r.moduleId),
+    })),
+    disciplineSession: dsRows.map(r => ({
+      disciplineId: r.disciplineId, disciplineName: disciplineMap.get(r.disciplineId),
+      sessionId: r.sessionId, sessionName: sessionMap.get(r.sessionId),
+    })),
+  }
 })

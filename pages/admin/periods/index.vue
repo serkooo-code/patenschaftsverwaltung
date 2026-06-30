@@ -1,5 +1,5 @@
 <template>
-  <LookupPage :items="data" api-path="/api/periods" :col-count="3"
+  <LookupPage :items="data" api-path="/api/periods" :col-count="3" :editable="true"
     :initial-form="{ name: '', startDate: '', endDate: '' }" @refresh="refresh">
     <template #fields="{ form }">
       <input v-model="form.name" :placeholder="$t('period.name')" class="form-input flex-1" required />

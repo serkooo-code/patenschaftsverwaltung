@@ -12,18 +12,29 @@
             <th>{{ $t('student.name') }}</th>
             <th>{{ $t('student.no') }}</th>
             <th>{{ $t('student.school') }}</th>
+            <th>{{ $t('nav.sessions') }}</th>
             <th>{{ $t('student.birthDate') }}</th>
             <th class="w-24 text-center" style="border-right:none"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-if="!data?.length">
-            <td colspan="5" class="text-center py-8" style="color:var(--color-text-muted);border-right:none">{{ $t('common.noData') }}</td>
+            <td colspan="6" class="text-center py-8" style="color:var(--color-text-muted);border-right:none">{{ $t('common.noData') }}</td>
           </tr>
           <tr v-for="s in data" :key="s.id">
             <td class="font-medium">{{ s.name }} {{ s.surname }}</td>
             <td style="color:var(--color-text-muted)">{{ s.studentNo }}</td>
             <td style="color:var(--color-text-muted)">{{ s.className ?? '—' }}</td>
+            <td>
+              <div class="flex flex-wrap gap-1">
+                <span v-for="sess in (s as any).sessions" :key="sess.id"
+                  class="text-xs px-1.5 py-0.5 rounded font-medium"
+                  style="background:var(--color-primary-subtle);color:var(--color-primary)">
+                  {{ dayAbbr(sess.name) }}
+                </span>
+                <span v-if="!(s as any).sessions?.length" class="text-xs" style="color:var(--color-text-muted)">—</span>
+              </div>
+            </td>
             <td style="color:var(--color-text-muted)">{{ s.birthDate }}</td>
             <td class="text-center" style="border-right:none">
               <div class="flex items-center justify-center gap-1">
@@ -45,6 +56,13 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin' })
 const { data, refresh } = await useFetch('/api/students')
+
+const ABBR: Record<string, string> = {
+  'Pazartesi': 'Pzt', 'Salı': 'Sal', 'Çarşamba': 'Çar',
+  'Perşembe': 'Per', 'Cuma': 'Cum', 'Cumartesi': 'Cmt', 'Pazar': 'Paz',
+}
+function dayAbbr(name: string) { return ABBR[name] ?? name.slice(0, 3) }
+
 async function remove(id: number) {
   if (!confirm('Öğrenciyi sil?')) return
   await $fetch(`/api/students/${id}`, { method: 'DELETE' })

@@ -4,22 +4,33 @@
     :style="{ width: collapsed ? '64px' : '240px' }"
   >
     <!-- Logo header -->
-    <div class="h-16 flex items-center px-3 gap-3 shrink-0">
-      <div
-        class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 font-bold text-sm text-white select-none"
-        style="background-color: var(--color-sidebar-active)"
-      >D</div>
-      <span v-if="!collapsed" class="font-bold text-sm text-white truncate flex-1">
-        {{ $t('app.name') }}
-      </span>
+    <div class="h-16 flex items-center shrink-0"
+         :class="collapsed ? 'justify-center' : 'px-3 gap-3'">
+      <template v-if="!collapsed">
+        <img
+          src="https://www.harikaegitim.com/public/assets/images/logo.svg"
+          alt="Harika Eğitim"
+          class="h-8 w-auto shrink-0 object-contain"
+          style="filter: brightness(0) invert(1)"
+        />
+        <button
+          @click="collapsed = true"
+          class="p-1.5 rounded-lg transition-colors hover:bg-white/10 ml-auto shrink-0"
+          title="Collapse"
+        >
+          <span class="material-icons-round text-lg leading-none" style="color: rgba(255,255,255,0.4)">
+            chevron_left
+          </span>
+        </button>
+      </template>
       <button
-        @click="collapsed = !collapsed"
-        class="p-1.5 rounded-lg transition-colors hover:bg-white/10 shrink-0"
-        :class="collapsed ? 'mx-auto' : 'ml-auto'"
-        :title="collapsed ? 'Expand' : 'Collapse'"
+        v-else
+        @click="collapsed = false"
+        class="p-1.5 rounded-lg transition-colors hover:bg-white/10"
+        title="Expand"
       >
         <span class="material-icons-round text-lg leading-none" style="color: rgba(255,255,255,0.4)">
-          {{ collapsed ? 'chevron_right' : 'chevron_left' }}
+          chevron_right
         </span>
       </button>
     </div>
@@ -80,11 +91,11 @@
 
 <script setup lang="ts">
 const collapsed = ref(false)
-const { user } = useUserSession()
+const { user, clear } = useUserSession()
 const isAdmin = computed(() => (user.value as any)?.role === 'admin')
 
 async function logout() {
-  await $fetch('/api/auth/logout', { method: 'POST' })
+  await clear()
   await navigateTo('/login')
 }
 </script>

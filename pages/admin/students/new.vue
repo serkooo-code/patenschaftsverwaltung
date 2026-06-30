@@ -16,7 +16,7 @@
         </div>
         <div>
           <label class="form-label">{{ $t('student.class') }}</label>
-          <select v-model.number="form.classId" class="form-input">
+          <select v-model.number="form.classId" class="form-input" @change="form.teacherIds = []">
             <option :value="null">—</option>
             <option v-for="c in classes" :key="c.id" :value="c.id">{{ c.name }}</option>
           </select>
@@ -25,10 +25,17 @@
 
       <div>
         <label class="form-label">{{ $t('student.teachers') }}</label>
-        <div class="flex flex-wrap gap-2 mt-1">
-          <label v-for="t in teachers" :key="t.id" class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" :value="t.id" v-model="form.teacherIds" class="rounded" />
-            <span class="text-sm" style="color:var(--color-text)">{{ t.name }} {{ t.surname }}</span>
+        <div v-if="!form.classId" class="text-sm mt-1" style="color:var(--color-text-muted)">
+          Önce bir okul seçin
+        </div>
+        <div v-else-if="!filteredTeachers.length" class="text-sm mt-1" style="color:var(--color-text-muted)">
+          Bu okula atanmış öğretmen yok
+        </div>
+        <div v-else class="grid grid-cols-3 gap-1 mt-1">
+          <label v-for="t in sortedTeachers" :key="t.id"
+            class="flex items-center gap-2 px-2 py-1.5 rounded cursor-pointer hover:bg-[var(--color-surface-alt)]">
+            <input type="checkbox" :value="t.id" v-model="form.teacherIds" class="rounded shrink-0" />
+            <span class="text-sm truncate" style="color:var(--color-text)">{{ t.surname }}, {{ t.name }}</span>
           </label>
         </div>
       </div>
@@ -62,6 +69,17 @@ const [{ data: classes }, { data: teachers }, { data: sessions }] = await Promis
 const form = reactive({ name: '', surname: '', birthDate: '', classId: null as number | null, teacherIds: [] as number[], sessionIds: [] as number[] })
 const loading = ref(false)
 const error = ref('')
+
+const filteredTeachers = computed(() => {
+  if (!form.classId) return []
+  return (teachers.value as any[])?.filter(t =>
+    t.schools?.some((s: any) => s.id === form.classId)
+  ) ?? []
+})
+
+const sortedTeachers = computed(() =>
+  [...filteredTeachers.value].sort((a, b) => a.surname.localeCompare(b.surname, 'tr'))
+)
 
 async function submit() {
   loading.value = true; error.value = ''

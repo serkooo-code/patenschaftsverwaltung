@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 268">
+  <!-- "Harika" in bold crimson serif -->
+  <text x="22" y="193"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="143" font-weight="bold"
+    fill="#8B1818">Harika</text>
+
+  <!-- Circle covers/replaces the "i" dot and forms lamp base -->
+  <circle cx="301" cy="86" r="14" fill="#8B1818"/>
+
+  <!-- Lamp arm: curved neck from dot area up to shade -->
+  <path d="M 301 86 C 320 72 344 60 365 50"
+    stroke="#8B1818" stroke-width="9"
+    fill="none" stroke-linecap="round"/>
+
+  <!-- Lamp shade: trapezoid wider at opening (bottom) -->
+  <path d="M 369 16 L 404 11 L 406 50 L 344 57 Z" fill="#8B1818"/>
+
+  <!-- Shade opening rim -->
+  <line x1="344" y1="57" x2="406" y2="50"
+    stroke="#6B0D0D" stroke-width="3.5"/>
+
+  <!-- Joint at arm-shade connection -->
+  <circle cx="365" cy="50" r="8" fill="#6B0D0D"/>
+
+  <!-- Light rays from shade opening -->
+  <g stroke="#8B1818" stroke-width="5" stroke-linecap="round" opacity="0.55">
+    <line x1="346" y1="60" x2="324" y2="85"/>
+    <line x1="358" y1="64" x2="345" y2="91"/>
+    <line x1="370" y1="64" x2="368" y2="93"/>
+    <line x1="382" y1="61" x2="386" y2="89"/>
+  </g>
+
+  <!-- Tagline in cursive gray -->
+  <text x="90" y="244"
+    font-family="'Segoe Script', 'Brush Script MT', cursive"
+    font-size="27"
+    fill="#6B7280">Farklılığa ışık ver.</text>
+</svg>
