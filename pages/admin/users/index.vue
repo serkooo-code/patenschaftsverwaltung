@@ -45,8 +45,10 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'admin' })
 const { data, refresh } = await useFetch('/api/users')
+const { t } = useI18n()
+const { confirm: askConfirm } = useConfirm()
 async function remove(id: number) {
-  if (!confirm('Kullanıcıyı sil?')) return
+  if (!await askConfirm(t('common.deleteConfirm'))) return
   await $fetch(`/api/users/${id}`, { method: 'DELETE' })
   refresh()
 }

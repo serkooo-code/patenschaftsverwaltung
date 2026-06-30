@@ -104,8 +104,10 @@ async function update() {
   finally { saving.value = false }
 }
 
+const { t } = useI18n()
+const { confirm: askConfirm } = useConfirm()
 async function remove(id: number) {
-  if (!confirm('Löschen?')) return
+  if (!await askConfirm(t('common.deleteConfirm'))) return
   try {
     await $fetch(`${props.apiPath}/${id}`, { method: 'DELETE' })
     emit('refresh')

@@ -51,7 +51,8 @@
     "search": "Ara...", "save": "Kaydet", "saving": "Kaydediliyor...",
     "cancel": "İptal", "edit": "Düzenle", "delete": "Sil", "add": "Ekle",
     "loading": "Yükleniyor...", "noData": "Kayıt bulunamadı", "none": "Yok",
-    "all": "Tümü", "filterClear": "Filtreyi temizle"
+    "all": "Tümü", "filterClear": "Filtreyi temizle", "yes": "Evet", "no": "Hayır",
+    "deleteConfirm": "Bu kaydı silmek istediğinizden emin misiniz?"
   },
   "theme": { "palette": "Renk Paleti", "light": "Açık", "dark": "Koyu" }
 }

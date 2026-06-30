@@ -51,7 +51,8 @@
     "search": "Suche...", "save": "Speichern", "saving": "Speichert...",
     "cancel": "Abbrechen", "edit": "Bearbeiten", "delete": "Löschen", "add": "Hinzufügen",
     "loading": "Lädt...", "noData": "Keine Einträge", "none": "Keine",
-    "all": "Alle", "filterClear": "Filter zurücksetzen"
+    "all": "Alle", "filterClear": "Filter zurücksetzen", "yes": "Ja", "no": "Nein",
+    "deleteConfirm": "Möchten Sie diesen Eintrag wirklich löschen?"
   },
   "theme": { "palette": "Farbpalette", "light": "Hell", "dark": "Dunkel" }
 }

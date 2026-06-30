@@ -142,11 +142,11 @@ const [{ data: teacher }, { data: allClasses }, { data: assignedClassIds }, { da
 
 if (!teacher.value) await navigateTo('/admin/teachers')
 
-const t = teacher.value as any
+const teacherRaw = teacher.value as any
 const form = reactive({
-  name: t?.name ?? '',
-  surname: t?.surname ?? '',
-  teacherNo: t?.teacherNo ?? '',
+  name: teacherRaw?.name ?? '',
+  surname: teacherRaw?.surname ?? '',
+  teacherNo: teacherRaw?.teacherNo ?? '',
   classIds: [...(assignedClassIds.value as number[] ?? [])],
   disciplineIds: [...(assignedDisciplineIds.value as number[] ?? [])],
 })
@@ -193,7 +193,10 @@ async function addStudent(s: { id: number; name: string; surname: string; studen
   showDropdown.value = false
 }
 
+const { t } = useI18n()
+const { confirm: askConfirm } = useConfirm()
 async function removeStudent(studentId: number) {
+  if (!await askConfirm(t('common.deleteConfirm'))) return
   await $fetch('/api/student-teachers', { method: 'DELETE', body: { teacherId: id, studentId } })
   assignedStudents.value = assignedStudents.value.filter(s => s.id !== studentId)
 }

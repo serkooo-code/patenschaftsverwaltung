@@ -183,14 +183,16 @@ function toggleStudents(id: number) {
   expandedTeachers.value = new Set(expandedTeachers.value)
 }
 
+const { t } = useI18n()
+const { confirm: askConfirm } = useConfirm()
 async function removeStudent(teacherId: number, studentId: number) {
-  if (!confirm('Öğrenci bu öğretmenden kaldırılsın mı?')) return
+  if (!await askConfirm(t('common.deleteConfirm'))) return
   await $fetch('/api/student-teachers', { method: 'DELETE', body: { teacherId, studentId } })
   refresh()
 }
 
 async function remove(id: number) {
-  if (!confirm('Öğretmeni sil?')) return
+  if (!await askConfirm(t('common.deleteConfirm'))) return
   await $fetch(`/api/teachers/${id}`, { method: 'DELETE' })
   refresh()
 }

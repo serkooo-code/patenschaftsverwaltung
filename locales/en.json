@@ -51,7 +51,8 @@
     "search": "Search...", "save": "Save", "saving": "Saving...",
     "cancel": "Cancel", "edit": "Edit", "delete": "Delete", "add": "Add",
     "loading": "Loading...", "noData": "No records found", "none": "None",
-    "all": "All", "filterClear": "Clear filter"
+    "all": "All", "filterClear": "Clear filter", "yes": "Yes", "no": "No",
+    "deleteConfirm": "Are you sure you want to delete this entry?"
   },
   "theme": { "palette": "Color Palette", "light": "Light", "dark": "Dark" }
 }

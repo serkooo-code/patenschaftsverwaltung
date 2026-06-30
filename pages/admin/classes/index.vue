@@ -96,8 +96,10 @@ async function saveEdit(id: number) {
   } catch (e: any) { error.value = e?.data?.statusMessage ?? 'Fehler' }
 }
 
+const { t } = useI18n()
+const { confirm: askConfirm } = useConfirm()
 async function remove(id: number) {
-  if (!confirm('Löschen?')) return
+  if (!await askConfirm(t('common.deleteConfirm'))) return
   try {
     await $fetch(`/api/classes/${id}`, { method: 'DELETE' })
     refresh()
