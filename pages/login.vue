@@ -2,7 +2,7 @@
   <div class="w-full max-w-sm">
     <!-- Mobile brand mark (hidden on md+, where left panel shows it) -->
     <div class="md:hidden flex items-center gap-3 mb-8">
-      <img src="/harika-logo.svg" alt="Harika" class="h-9 w-auto" />
+      <img src="/harika.jpg" alt="Harika" class="h-9 w-auto rounded" />
       <span class="font-bold text-base" style="color: var(--color-text)">{{ $t('app.name') }}</span>
     </div>
 

@@ -8,10 +8,9 @@
          :class="collapsed ? 'justify-center' : 'px-3 gap-3'">
       <template v-if="!collapsed">
         <img
-          src="https://www.harikaegitim.com/public/assets/images/logo.svg"
+          src="/harika.jpg"
           alt="Harika Eğitim"
-          class="h-8 w-auto shrink-0 object-contain"
-          style="filter: brightness(0) invert(1)"
+          class="h-8 w-auto shrink-0 object-contain rounded"
         />
         <button
           @click="collapsed = true"

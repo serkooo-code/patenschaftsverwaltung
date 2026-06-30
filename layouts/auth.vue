@@ -10,8 +10,8 @@
 
       <!-- Central brand copy -->
       <div class="relative z-10 max-w-sm">
-        <div class="bg-white rounded-2xl px-6 py-5 shadow-lg mb-6 inline-block">
-          <img src="/harika-logo.svg" alt="Harika" class="h-24 w-auto" />
+        <div class="mb-6 inline-block">
+          <img src="/harika.jpg" alt="Harika" class="h-48 w-auto rounded-xl" />
         </div>
         <p class="auth-panel__tagline">{{ $t('auth.tagline') }}</p>
         <p class="auth-panel__subtitle">{{ $t('auth.subtitle') }}</p>
