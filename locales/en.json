@@ -44,7 +44,8 @@
   "result": { "completed": "Completed", "working": "In Progress", "pending": "Pending" },
   "report": {
     "teacherStats": "Teacher Statistics", "totalStudents": "Total Students",
-    "studentCompletion": "Student Completion Rates"
+    "studentCompletion": "Student Completion Rates",
+    "evaluated": "Evaluated", "open": "Open"
   },
   "user": { "email": "Email", "role": "Role", "new": "New User" },
   "common": {

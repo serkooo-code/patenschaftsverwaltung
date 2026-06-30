@@ -44,7 +44,8 @@
   "result": { "completed": "Abgeschlossen", "working": "In Arbeit", "pending": "Ausstehend" },
   "report": {
     "teacherStats": "Lehrerstatistiken", "totalStudents": "Schüler gesamt",
-    "studentCompletion": "Schüler-Abschlussquoten"
+    "studentCompletion": "Schüler-Abschlussquoten",
+    "evaluated": "Bewertet", "open": "Offen"
   },
   "user": { "email": "E-Mail", "role": "Rolle", "new": "Neuer Benutzer" },
   "common": {

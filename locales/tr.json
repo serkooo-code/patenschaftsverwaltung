@@ -44,7 +44,8 @@
   "result": { "completed": "Tamamlandı", "working": "Çalışılan", "pending": "Bekleyen" },
   "report": {
     "teacherStats": "Öğretmen İstatistikleri", "totalStudents": "Toplam Öğrenci",
-    "studentCompletion": "Öğrenci Tamamlanma Oranları"
+    "studentCompletion": "Öğrenci Tamamlanma Oranları",
+    "evaluated": "Değerlendirildi", "open": "Açık"
   },
   "user": { "email": "E-posta", "role": "Rol", "new": "Yeni Kullanıcı" },
   "common": {

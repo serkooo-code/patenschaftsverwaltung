@@ -22,8 +22,9 @@
           </span>
         </button>
 
-        <div v-if="teacherStatsOpen">
-          <div class="px-5 pb-3 pt-1 flex items-center gap-2" style="border-top:1px solid var(--color-border)">
+        <div v-if="teacherStatsOpen" style="border-top:1px solid var(--color-border)">
+          <!-- Filter -->
+          <div class="px-5 pb-3 pt-2 flex items-center gap-2">
             <span class="material-icons-round text-base shrink-0" style="color:var(--color-text-muted)">search</span>
             <input v-model="teacherFilter" type="text" :placeholder="$t('common.search')"
               class="flex-1 bg-transparent text-sm outline-none py-1" style="color:var(--color-text)" />
@@ -32,29 +33,72 @@
               <span class="material-icons-round text-base" style="color:var(--color-text-muted)">close</span>
             </button>
           </div>
-          <table class="w-full text-sm">
-            <thead>
-              <tr style="border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)">
-                <th class="text-left px-5 py-2 font-semibold" style="color:var(--color-text-muted)">{{ $t('teacher.name') }}</th>
-                <th class="text-left px-5 py-2 font-semibold" style="color:var(--color-text-muted)">{{ $t('report.totalStudents') }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="t in filteredTeacherStats" :key="t.teacherId"
-                class="border-b" style="border-color:var(--color-border)">
-                <td class="px-5 py-2.5" style="color:var(--color-text)">{{ t.teacherName }} {{ t.teacherSurname }}</td>
-                <td class="px-5 py-2.5" style="color:var(--color-text-muted)">{{ t.totalStudents }}</td>
-              </tr>
-              <tr v-if="!filteredTeacherStats.length">
-                <td colspan="2" class="px-5 py-6 text-center" style="color:var(--color-text-muted)">{{ $t('common.noData') }}</td>
-              </tr>
-            </tbody>
-          </table>
+
+          <!-- Teacher rows -->
+          <div style="border-top:1px solid var(--color-border)">
+            <template v-for="t in filteredTeacherStats" :key="t.teacherId">
+              <!-- Teacher row (clickable) -->
+              <button type="button" @click="toggleTeacher(t.teacherId)"
+                class="w-full flex items-center gap-3 px-5 py-3 text-left hover:bg-[var(--color-surface-alt)] transition-colors"
+                style="border-bottom:1px solid var(--color-border)">
+                <span class="material-icons-round text-base transition-transform duration-200 shrink-0"
+                  style="color:var(--color-text-muted)"
+                  :style="{ transform: expandedTeachers.has(t.teacherId) ? 'rotate(90deg)' : 'rotate(0deg)' }">
+                  chevron_right
+                </span>
+                <span class="flex-1 text-sm font-medium" style="color:var(--color-text)">
+                  {{ t.teacherName }} {{ t.teacherSurname }}
+                </span>
+                <!-- Progress bar + counts -->
+                <div class="flex items-center gap-3 shrink-0">
+                  <div class="w-32 h-2 rounded-full overflow-hidden" style="background:var(--color-surface-alt)">
+                    <div class="h-full rounded-full transition-all" style="background:var(--color-success)"
+                      :style="{ width: t.totalStudents > 0 ? `${Math.round(t.evaluatedCount / t.totalStudents * 100)}%` : '0%' }">
+                    </div>
+                  </div>
+                  <span class="text-xs w-16 text-right" style="color:var(--color-text-muted)">
+                    <span :style="{ color: t.evaluatedCount === t.totalStudents ? 'var(--color-success)' : 'var(--color-text)' }" class="font-semibold">
+                      {{ t.evaluatedCount }}
+                    </span>
+                    / {{ t.totalStudents }}
+                  </span>
+                </div>
+              </button>
+
+              <!-- Student detail (expanded) -->
+              <div v-if="expandedTeachers.has(t.teacherId)"
+                class="grid gap-1 px-5 py-3"
+                style="background:var(--color-surface-alt);border-bottom:1px solid var(--color-border);grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+                <button type="button" v-for="s in t.students" :key="s.studentId"
+                  @click="selectStudent(s.studentId)"
+                  class="flex items-center gap-2 px-3 py-2 rounded-lg w-full text-left hover:opacity-80 transition-opacity cursor-pointer"
+                  style="background:var(--color-surface)">
+                  <span class="material-icons-round text-base shrink-0"
+                    :style="{ color: s.evaluated ? 'var(--color-success)' : 'var(--color-danger)' }">
+                    {{ s.evaluated ? 'check_circle' : 'radio_button_unchecked' }}
+                  </span>
+                  <span class="flex-1 text-sm truncate" style="color:var(--color-text)">
+                    {{ s.studentSurname }}, {{ s.studentName }}
+                  </span>
+                  <span class="text-xs shrink-0 px-1.5 py-0.5 rounded-full font-medium"
+                    :style="s.evaluated
+                      ? 'background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success)'
+                      : 'background:color-mix(in srgb,var(--color-danger) 12%,transparent);color:var(--color-danger)'">
+                    {{ s.evaluated ? $t('report.evaluated') : $t('report.open') }}
+                  </span>
+                </button>
+              </div>
+            </template>
+
+            <div v-if="!filteredTeacherStats.length" class="px-5 py-6 text-center text-sm" style="color:var(--color-text-muted)">
+              {{ $t('common.noData') }}
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Student completion -->
-      <div class="card p-0 overflow-hidden">
+      <div ref="studentCompletionRef" class="card p-0 overflow-hidden">
         <button type="button" @click="studentCompletionOpen = !studentCompletionOpen"
           class="w-full flex items-center justify-between px-5 py-4 hover:bg-[var(--color-surface-alt)] transition-colors">
           <h2 class="font-semibold" style="color:var(--color-text)">{{ $t('report.studentCompletion') }}</h2>
@@ -66,8 +110,10 @@
         </button>
 
         <div v-if="studentCompletionOpen" style="border-top:1px solid var(--color-border)">
-          <div v-for="s in (report as any).studentCompletion" :key="s.studentId">
-            <!-- Schüler-Zeile (klickbar) -->
+          <div v-if="expandedTeachers.size === 0 && filteredStudentCompletion.length === 0" class="px-5 py-6 text-center text-sm" style="color:var(--color-text-muted)">
+            Bitte einen Lehrer aufklappen, um dessen Schüler zu sehen.
+          </div>
+          <div v-for="s in filteredStudentCompletion" :key="s.studentId">
             <button type="button" @click="toggleStudent(s.studentId)"
               class="w-full flex items-start gap-3 px-5 py-3 hover:bg-[var(--color-surface-alt)] transition-colors text-left"
               style="border-bottom:1px solid var(--color-border)">
@@ -90,7 +136,6 @@
               </div>
             </button>
 
-            <!-- Ziel-Details (expandiert) -->
             <div v-if="expandedStudents.has(s.studentId)"
               class="px-5 py-3 flex flex-col gap-2"
               style="background:var(--color-surface-alt);border-bottom:1px solid var(--color-border)">
@@ -120,7 +165,7 @@
             </div>
           </div>
 
-          <p v-if="!(report as any).studentCompletion?.length" class="px-5 py-6 text-center text-sm" style="color:var(--color-text-muted)">
+          <p v-if="filteredStudentCompletion.length === 0 && expandedTeachers.size > 0" class="px-5 py-6 text-center text-sm" style="color:var(--color-text-muted)">
             {{ $t('common.noData') }}
           </p>
         </div>
@@ -140,9 +185,23 @@ const teacherStatsOpen = ref(true)
 const studentCompletionOpen = ref(true)
 const teacherFilter = ref('')
 
+const expandedTeachers = ref(new Set<number>())
 const expandedStudents = ref(new Set<number>())
 const studentGoals = ref(new Map<number, any[]>())
 const loadingStudents = ref(new Set<number>())
+const studentCompletionRef = ref<HTMLElement | null>(null)
+
+function toggleTeacher(id: number) {
+  if (expandedTeachers.value.has(id)) expandedTeachers.value.delete(id)
+  else expandedTeachers.value.add(id)
+  expandedTeachers.value = new Set(expandedTeachers.value)
+}
+
+function selectStudent(studentId: number) {
+  nextTick(() => {
+    studentCompletionRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  })
+}
 
 async function toggleStudent(studentId: number) {
   if (expandedStudents.value.has(studentId)) {
@@ -152,9 +211,7 @@ async function toggleStudent(studentId: number) {
   }
   expandedStudents.value.add(studentId)
   expandedStudents.value = new Set(expandedStudents.value)
-
   if (studentGoals.value.has(studentId)) return
-
   loadingStudents.value.add(studentId)
   loadingStudents.value = new Set(loadingStudents.value)
   try {
@@ -172,8 +229,8 @@ async function toggleStudent(studentId: number) {
   }
 }
 
-// Reset expanded state when period changes
 watch(selectedPeriodId, () => {
+  expandedTeachers.value = new Set()
   expandedStudents.value = new Set()
   studentGoals.value = new Map()
 })
@@ -185,5 +242,19 @@ const filteredTeacherStats = computed(() => {
   return list.filter((t: any) =>
     `${t.teacherName} ${t.teacherSurname}`.toLocaleLowerCase('tr').includes(q)
   )
+})
+
+// Student completion: only show when a teacher is expanded, filtered to their students
+const filteredStudentCompletion = computed(() => {
+  if (expandedTeachers.value.size === 0) return []
+  const all = (report.value as any)?.studentCompletion ?? []
+  const teacherStats = (report.value as any)?.teacherStats ?? []
+  const allowedIds = new Set<number>()
+  for (const t of teacherStats) {
+    if (expandedTeachers.value.has(t.teacherId)) {
+      for (const s of t.students) allowedIds.add(s.studentId)
+    }
+  }
+  return all.filter((s: any) => allowedIds.has(s.studentId))
 })
 </script>
