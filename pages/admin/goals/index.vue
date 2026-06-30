@@ -1,6 +1,6 @@
 <template>
   <LookupPage :items="data" api-path="/api/goals" :col-count="1"
-    :initial-form="{ name: '' }" @refresh="refresh">
+    :initial-form="{ name: '' }" :editable="true" @refresh="refresh">
     <template #fields="{ form }">
       <input v-model="form.name" :placeholder="$t('goal.name')" class="form-input flex-1" required />
     </template>

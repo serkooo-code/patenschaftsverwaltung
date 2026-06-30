@@ -50,7 +50,8 @@
   "common": {
     "search": "Search...", "save": "Save", "saving": "Saving...",
     "cancel": "Cancel", "edit": "Edit", "delete": "Delete", "add": "Add",
-    "loading": "Loading...", "noData": "No records found", "none": "None"
+    "loading": "Loading...", "noData": "No records found", "none": "None",
+    "all": "All", "filterClear": "Clear filter"
   },
   "theme": { "palette": "Color Palette", "light": "Light", "dark": "Dark" }
 }

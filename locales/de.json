@@ -50,7 +50,8 @@
   "common": {
     "search": "Suche...", "save": "Speichern", "saving": "Speichert...",
     "cancel": "Abbrechen", "edit": "Bearbeiten", "delete": "Löschen", "add": "Hinzufügen",
-    "loading": "Lädt...", "noData": "Keine Einträge", "none": "Keine"
+    "loading": "Lädt...", "noData": "Keine Einträge", "none": "Keine",
+    "all": "Alle", "filterClear": "Filter zurücksetzen"
   },
   "theme": { "palette": "Farbpalette", "light": "Hell", "dark": "Dunkel" }
 }

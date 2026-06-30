@@ -29,7 +29,7 @@
             <td class="px-4 py-3 font-medium" style="color:var(--color-text)">{{ row.studentName }} {{ row.studentSurname }}</td>
             <td class="px-4 py-3"><span class="badge-active">{{ row.completed }}</span></td>
             <td class="px-4 py-3"><span class="badge-paused">{{ row.working }}</span></td>
-            <td class="px-4 py-3"><span class="badge-ended">{{ row.pending }}</span></td>
+            <td class="px-4 py-3"><span class="badge-pending">{{ row.pending }}</span></td>
             <td class="px-4 py-3 w-40">
               <div class="h-2 rounded-full overflow-hidden" style="background:var(--color-surface-alt)">
                 <div class="h-full rounded-full" style="background:var(--color-success)"

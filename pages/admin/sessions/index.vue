@@ -1,5 +1,5 @@
 <template>
-  <LookupPage :items="data" api-path="/api/sessions" :col-count="1" @refresh="refresh">
+  <LookupPage :items="data" api-path="/api/sessions" :col-count="1" :editable="true" @refresh="refresh">
     <template #fields="{ form }">
       <input v-model="form.name" :placeholder="$t('session.name')" class="form-input flex-1" required />
     </template>
