@@ -231,6 +231,11 @@ body {
     background-color: color-mix(in srgb, var(--color-text-muted) 12%, transparent);
     color: var(--color-text-muted);
   }
+  .badge-pending {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+    background-color: color-mix(in srgb, var(--color-danger) 12%, transparent);
+    color: var(--color-danger);
+  }
 
   /* ── Data Table ── */
   .data-table {

@@ -138,13 +138,13 @@ const { t } = useI18n()
 const resultOptions = [
   { value: 'completed' as const, label: t('result.completed'), activeClass: 'badge-active' },
   { value: 'working' as const, label: t('result.working'), activeClass: 'badge-paused' },
-  { value: 'pending' as const, label: t('result.pending'), activeClass: 'badge-ended' },
+  { value: 'pending' as const, label: t('result.pending'), activeClass: 'badge-pending' },
 ]
 
 // Seans → Modüller
 const sessionModules = computed(() => {
   const map: Record<number, { id: number; name: string }[]> = {}
-  for (const r of (assoc.value as any)?.sessionModules ?? []) {
+  for (const r of (assoc.value as any)?.sessionModule ?? []) {
     if (!map[r.sessionId]) map[r.sessionId] = []
     map[r.sessionId].push({ id: r.moduleId, name: r.moduleName })
   }
@@ -154,7 +154,7 @@ const sessionModules = computed(() => {
 // Modül → Hedefler
 const moduleGoals = computed(() => {
   const map: Record<number, { id: number; name: string; minAge: number | null; maxAge: number | null }[]> = {}
-  for (const r of (assoc.value as any)?.moduleGoals ?? []) {
+  for (const r of (assoc.value as any)?.moduleGoal ?? []) {
     if (!map[r.moduleId]) map[r.moduleId] = []
     const goal = (allGoals.value as any[])?.find((g: any) => g.id === r.goalId)
     map[r.moduleId].push({ id: r.goalId, name: r.goalName, minAge: goal?.minAge ?? null, maxAge: goal?.maxAge ?? null })
@@ -165,7 +165,7 @@ const moduleGoals = computed(() => {
 // Branş → Seanslar → (nur Schüler-Sessions, gefiltert nach Lehrer-Branşlar)
 const disciplineTree = computed(() => {
   const studentSessionIds = new Set((student.value as any)?.sessions?.map((s: any) => s.id) ?? [])
-  const disciplineSessions: any[] = (assoc.value as any)?.disciplineSessions ?? []
+  const disciplineSessions: any[] = (assoc.value as any)?.disciplineSession ?? []
   // null = Admin (kein Filter), Array = Lehrer-Branşlar
   const allowedIds: number[] | null = myDisciplineIds.value as any
 
